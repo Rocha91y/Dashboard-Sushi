@@ -47,7 +47,7 @@
 
         <!-- ================= ABA 1: VISÃO GERAL ================= -->
         <div id="aba-visao-geral" class="tab-content space-y-6">
-            <!-- Controles Rápidos com Eventos JS Ativos -->
+            <!-- Controles Rápidos -->
             <div class="flex flex-wrap justify-between items-center gap-4 bg-slate-900/60 p-4 rounded-xl border border-sky-500/30">
                 <span class="text-sm font-semibold text-slate-200"><i class="fa-solid fa-sliders text-sky-400 mr-2"></i>Filtros Operacionais</span>
                 <div class="flex items-center gap-3 text-sm">
@@ -248,42 +248,24 @@
                                 <th class="py-3 px-4 font-semibold text-center">Status</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-slate-700/80">
-                            <tr class="bg-slate-900/90 odd:bg-slate-900/90 even:bg-slate-800/50 hover:bg-slate-800 transition-colors">
-                                <td class="py-3 px-4 border-r border-slate-700 text-slate-300 font-mono">#RES-201</td>
-                                <td class="py-3 px-4 border-r border-slate-700 font-medium text-white coluna-titular">Carlos Eduardo Silva</td>
-                                <td class="py-3 px-4 border-r border-slate-700 text-center text-white">4 Assentos</td>
-                                <td class="py-3 px-4 border-r border-slate-700 text-white">14 Sábado</td>
-                                <td class="py-3 px-4 text-center coluna-status">
-                                    <span class="inline-flex items-center gap-1.5 font-medium text-emerald-400">
-                                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.8)]"></span> Confirmado
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr class="bg-slate-900/90 odd:bg-slate-900/90 even:bg-slate-800/50 hover:bg-slate-800 transition-colors">
-                                <td class="py-3 px-4 border-r border-slate-700 text-slate-300 font-mono">#RES-202</td>
-                                <td class="py-3 px-4 border-r border-slate-700 font-medium text-white coluna-titular">Mariana Sato Ferreira</td>
-                                <td class="py-3 px-4 border-r border-slate-700 text-center text-white">2 Assentos</td>
-                                <td class="py-3 px-4 border-r border-slate-700 text-white">14 Sábado</td>
-                                <td class="py-3 px-4 text-center coluna-status">
-                                    <span class="inline-flex items-center gap-1.5 font-medium text-amber-400">
-                                        <span class="w-2.5 h-2.5 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(245,158,11,0.8)]"></span> Pendente
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr class="bg-slate-900/90 odd:bg-slate-900/90 even:bg-slate-800/50 hover:bg-slate-800 transition-colors">
-                                <td class="py-3 px-4 border-r border-slate-700 text-slate-300 font-mono">#RES-203</td>
-                                <td class="py-3 px-4 border-r border-slate-700 font-medium text-white coluna-titular">Roberto Almeida Prado</td>
-                                <td class="py-3 px-4 border-r border-slate-700 text-center text-white">6 Assentos</td>
-                                <td class="py-3 px-4 border-r border-slate-700 text-white">15 Domingo</td>
-                                <td class="py-3 px-4 text-center coluna-status">
-                                    <span class="inline-flex items-center gap-1.5 font-medium text-rose-500">
-                                        <span class="w-2.5 h-2.5 rounded-full bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.8)]"></span> Cancelado
-                                    </span>
-                                </td>
-                            </tr>
+                        <tbody class="divide-y divide-slate-700/80" id="corpo-tabela-reservas">
+                            <!-- Preenchido dinamicamente via JS -->
                         </tbody>
                     </table>
+                </div>
+
+                <!-- Paginação Fictícia Dinâmica -->
+                <div class="flex items-center justify-between mt-4 px-2 text-xs text-slate-400">
+                    <span id="paginacao-texto" class="font-medium text-slate-300">Mostrando 1-20 de 54</span>
+                    <div class="flex items-center gap-2">
+                        <button disabled class="px-3 py-1.5 bg-slate-800 text-slate-500 rounded-lg border border-slate-700/60 cursor-not-allowed flex items-center gap-1">
+                            <i class="fa-solid fa-chevron-left text-xs"></i> Anterior
+                        </button>
+                        <span id="paginacao-tag" class="px-3 py-1.5 bg-sky-500/20 text-sky-400 font-bold border border-sky-500/30 rounded-lg">1 de 3</span>
+                        <button disabled class="px-3 py-1.5 bg-slate-800 text-slate-300 rounded-lg border border-slate-700 cursor-not-allowed opacity-80 flex items-center gap-1 hover:bg-slate-700">
+                            Próxima <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -325,6 +307,96 @@
                                 <td class="py-3 px-4 border-r border-slate-700 text-emerald-400 font-bold">R$ 3.060,00</td>
                                 <td class="py-3 px-4 text-center text-slate-300">14 Sábado</td>
                             </tr>
+                            <tr class="bg-slate-900/90 odd:bg-slate-900/90 even:bg-slate-800/50 hover:bg-slate-800 transition-colors">
+                                <td class="py-3 px-4 border-r border-slate-700 text-slate-300 font-mono">NF-8842</td>
+                                <td class="py-3 px-4 border-r border-slate-700 font-medium text-white col-rec-prod">Atum Fresh Loin (Equador)</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-slate-300 col-rec-forn">Mar Aberto Frutos do Mar</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-center text-white font-semibold">20 Kg</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-white">R$ 95,00/kg</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-emerald-400 font-bold">R$ 1.900,00</td>
+                                <td class="py-3 px-4 text-center text-slate-300">14 Sábado</td>
+                            </tr>
+                            <tr class="bg-slate-900/90 odd:bg-slate-900/90 even:bg-slate-800/50 hover:bg-slate-800 transition-colors">
+                                <td class="py-3 px-4 border-r border-slate-700 text-slate-300 font-mono">NF-8843</td>
+                                <td class="py-3 px-4 border-r border-slate-700 font-medium text-white col-rec-prod">Cream Cheese Original 1.2kg</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-slate-300 col-rec-forn">Laticínios Serra Azul</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-center text-white font-semibold">15 Un</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-white">R$ 42,00/un</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-emerald-400 font-bold">R$ 630,00</td>
+                                <td class="py-3 px-4 text-center text-slate-300">13 Sexta</td>
+                            </tr>
+                            <tr class="bg-slate-900/90 odd:bg-slate-900/90 even:bg-slate-800/50 hover:bg-slate-800 transition-colors">
+                                <td class="py-3 px-4 border-r border-slate-700 text-slate-300 font-mono">NF-8844</td>
+                                <td class="py-3 px-4 border-r border-slate-700 font-medium text-white col-rec-prod">Arroz Japonês Grão Curto (Aki)</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-slate-300 col-rec-forn">Grãos & Cia Importação</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-center text-white font-semibold">100 Kg</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-white">R$ 18,00/kg</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-emerald-400 font-bold">R$ 1.800,00</td>
+                                <td class="py-3 px-4 text-center text-slate-300">12 Quinta</td>
+                            </tr>
+                            <tr class="bg-slate-900/90 odd:bg-slate-900/90 even:bg-slate-800/50 hover:bg-slate-800 transition-colors">
+                                <td class="py-3 px-4 border-r border-slate-700 text-slate-300 font-mono">NF-8845</td>
+                                <td class="py-3 px-4 border-r border-slate-700 font-medium text-white col-rec-prod">Alga Nori Gold (Pacote 50 fls)</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-slate-300 col-rec-forn">Oriental Trading Co.</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-center text-white font-semibold">20 Pct</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-white">R$ 35,00/pct</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-emerald-400 font-bold">R$ 700,00</td>
+                                <td class="py-3 px-4 text-center text-slate-300">12 Quinta</td>
+                            </tr>
+                            <tr class="bg-slate-900/90 odd:bg-slate-900/90 even:bg-slate-800/50 hover:bg-slate-800 transition-colors">
+                                <td class="py-3 px-4 border-r border-slate-700 text-slate-300 font-mono">NF-8846</td>
+                                <td class="py-3 px-4 border-r border-slate-700 font-medium text-white col-rec-prod">Wasabi em Pó Premium 1kg</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-slate-300 col-rec-forn">Nippon Insumos</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-center text-white font-semibold">5 Pct</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-white">R$ 85,00/pct</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-emerald-400 font-bold">R$ 425,00</td>
+                                <td class="py-3 px-4 text-center text-slate-300">11 Quarta</td>
+                            </tr>
+                            <tr class="bg-slate-900/90 odd:bg-slate-900/90 even:bg-slate-800/50 hover:bg-slate-800 transition-colors">
+                                <td class="py-3 px-4 border-r border-slate-700 text-slate-300 font-mono">NF-8847</td>
+                                <td class="py-3 px-4 border-r border-slate-700 font-medium text-white col-rec-prod">Molho Shoyu Tradicional 5L</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-slate-300 col-rec-forn">Sakura Alimentos</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-center text-white font-semibold">8 Galões</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-white">R$ 62,00/gl</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-emerald-400 font-bold">R$ 496,00</td>
+                                <td class="py-3 px-4 text-center text-slate-300">10 Terça</td>
+                            </tr>
+                            <tr class="bg-slate-900/90 odd:bg-slate-900/90 even:bg-slate-800/50 hover:bg-slate-800 transition-colors">
+                                <td class="py-3 px-4 border-r border-slate-700 text-slate-300 font-mono">NF-8848</td>
+                                <td class="py-3 px-4 border-r border-slate-700 font-medium text-white col-rec-prod">Polvo Inteiro Limpo Congelado</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-slate-300 col-rec-forn">Pescados do Pacífico Ltda</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-center text-white font-semibold">12 Kg</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-white">R$ 110,00/kg</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-emerald-400 font-bold">R$ 1.320,00</td>
+                                <td class="py-3 px-4 text-center text-slate-300">10 Terça</td>
+                            </tr>
+                            <tr class="bg-slate-900/90 odd:bg-slate-900/90 even:bg-slate-800/50 hover:bg-slate-800 transition-colors">
+                                <td class="py-3 px-4 border-r border-slate-700 text-slate-300 font-mono">NF-8849</td>
+                                <td class="py-3 px-4 border-r border-slate-700 font-medium text-white col-rec-prod">Camarão Rosa 21/25 Limpo</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-slate-300 col-rec-forn">Mar Aberto Frutos do Mar</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-center text-white font-semibold">15 Kg</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-white">R$ 88,00/kg</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-emerald-400 font-bold">R$ 1.320,00</td>
+                                <td class="py-3 px-4 text-center text-slate-300">09 Segunda</td>
+                            </tr>
+                            <tr class="bg-slate-900/90 odd:bg-slate-900/90 even:bg-slate-800/50 hover:bg-slate-800 transition-colors">
+                                <td class="py-3 px-4 border-r border-slate-700 text-slate-300 font-mono">NF-8850</td>
+                                <td class="py-3 px-4 border-r border-slate-700 font-medium text-white col-rec-prod">Sake Culinário Mirin 5L</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-slate-300 col-rec-forn">Oriental Trading Co.</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-center text-white font-semibold">4 Galões</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-white">R$ 125,00/gl</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-emerald-400 font-bold">R$ 500,00</td>
+                                <td class="py-3 px-4 text-center text-slate-300">08 Domingo</td>
+                            </tr>
+                            <tr class="bg-slate-900/90 odd:bg-slate-900/90 even:bg-slate-800/50 hover:bg-slate-800 transition-colors">
+                                <td class="py-3 px-4 border-r border-slate-700 text-slate-300 font-mono">NF-8851</td>
+                                <td class="py-3 px-4 border-r border-slate-700 font-medium text-white col-rec-prod">Massa de Harumaki (Rolo Primavera)</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-slate-300 col-rec-forn">Massas & Cia Especialidades</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-center text-white font-semibold">25 Pct</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-white">R$ 16,00/pct</td>
+                                <td class="py-3 px-4 border-r border-slate-700 text-emerald-400 font-bold">R$ 400,00</td>
+                                <td class="py-3 px-4 text-center text-slate-300">07 Sábado</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -347,8 +419,8 @@
                 </div>
 
                 <div class="bg-slate-900 border border-sky-500/40 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 hover:border-rose-500/60 hover:shadow-[0_0_25px_rgba(244,63,94,0.5)]">
-                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-300 block mb-2">Urgência de Reposição</span>
-                    <div class="text-2xl font-bold text-rose-500 mb-1">5 Urgências Críticas</div>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-300 block mb-2">Estoque Crítico</span>
+                    <div class="text-2xl font-bold text-rose-500 mb-1">5 Estoques Críticos</div>
                     <p class="text-xs text-slate-300">Produtos 30% ou mais abaixo do mín.</p>
                 </div>
             </div>
@@ -357,7 +429,7 @@
                 <div class="flex flex-wrap justify-between items-center gap-4 mb-6">
                     <h2 class="text-base font-bold text-white">Controle de Estoque & Compras</h2>
                     <div class="flex flex-wrap items-center gap-3 w-full sm:w-auto">
-                        <div class="relative flex-1 sm:w-64">
+                        <div class="relative flex-1 sm:w-56">
                             <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
                             <input type="text" id="buscaEstoque" onkeyup="filtrarEstoque()" placeholder="Buscar item do estoque..." class="w-full bg-slate-950 border border-slate-700 text-white rounded-lg pl-9 pr-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500">
                         </div>
@@ -366,6 +438,12 @@
                             <option value="Principal">Pratos / Principal</option>
                             <option value="Sobremesas">Sobremesas</option>
                             <option value="Bebidas">Drinks e Bebidas</option>
+                        </select>
+                        <select id="filtroEstoqueStatus" onchange="filtrarEstoque()" class="bg-slate-950 border border-slate-700 text-white rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 cursor-pointer">
+                            <option value="todos">Todos os Status</option>
+                            <option value="ok">Estoque OK</option>
+                            <option value="alerta">Produto em Alerta</option>
+                            <option value="critico">Estoque Crítico</option>
                         </select>
                     </div>
                 </div>
@@ -487,6 +565,65 @@
             }
         };
 
+        // Base completa de 54 Reservas coerentes (36 Confirmados, 12 Pendentes, 6 Cancelados)
+        const listaReservas = [
+            { id: "#RES-201", titular: "Carlos Eduardo Silva", assentos: "4 Assentos", data: "14 Sábado", status: "Confirmado" },
+            { id: "#RES-202", titular: "Mariana Sato Ferreira", assentos: "2 Assentos", data: "14 Sábado", status: "Pendente" },
+            { id: "#RES-203", titular: "Roberto Almeida Prado", assentos: "6 Assentos", data: "15 Domingo", status: "Cancelado" },
+            { id: "#RES-204", titular: "Juliana Tanoue", assentos: "4 Assentos", data: "14 Sábado", status: "Confirmado" },
+            { id: "#RES-205", titular: "Fernando Costa", assentos: "2 Assentos", data: "14 Sábado", status: "Confirmado" },
+            { id: "#RES-206", titular: "Luciana Gomez", assentos: "8 Assentos", data: "15 Domingo", status: "Pendente" },
+            { id: "#RES-207", titular: "Rodrigo Hayashi", assentos: "4 Assentos", data: "15 Domingo", status: "Confirmado" },
+            { id: "#RES-208", titular: "Patricia Lima", assentos: "2 Assentos", data: "16 Segunda", status: "Confirmado" },
+            { id: "#RES-209", titular: "Marcelo Nakamura", assentos: "5 Assentos", data: "16 Segunda", status: "Confirmado" },
+            { id: "#RES-210", titular: "Gabriel Santos", assentos: "3 Assentos", data: "16 Segunda", status: "Cancelado" },
+            { id: "#RES-211", titular: "Beatriz Oliveira", assentos: "2 Assentos", data: "17 Terça", status: "Confirmado" },
+            { id: "#RES-212", titular: "Tiago Mendes", assentos: "4 Assentos", data: "17 Terça", status: "Confirmado" },
+            { id: "#RES-213", titular: "Vanessa Suzuki", assentos: "6 Assentos", data: "18 Quarta", status: "Pendente" },
+            { id: "#RES-214", titular: "Ricardo Ramos", assentos: "2 Assentos", data: "18 Quarta", status: "Confirmado" },
+            { id: "#RES-215", titular: "Camila Watanabe", assentos: "4 Assentos", data: "19 Quinta", status: "Confirmado" },
+            { id: "#RES-216", titular: "Lucas Martins", assentos: "2 Assentos", data: "19 Quinta", status: "Confirmado" },
+            { id: "#RES-217", titular: "Amanda Rocha", assentos: "8 Assentos", data: "20 Sexta", status: "Pendente" },
+            { id: "#RES-218", titular: "Bruno Yamamoto", assentos: "4 Assentos", data: "20 Sexta", status: "Confirmado" },
+            { id: "#RES-219", titular: "Larissa Castro", assentos: "2 Assentos", data: "20 Sexta", status: "Confirmado" },
+            { id: "#RES-220", titular: "Diego Souza", assentos: "6 Assentos", data: "21 Sábado", status: "Confirmado" },
+            // Próximos itens para lista completa coerente
+            { id: "#RES-221", titular: "Aline Takahashi", assentos: "4 Assentos", data: "21 Sábado", status: "Confirmado" },
+            { id: "#RES-222", titular: "Fabio Henrique", assentos: "2 Assentos", data: "21 Sábado", status: "Confirmado" },
+            { id: "#RES-223", titular: "Renata Matsui", assentos: "5 Assentos", data: "21 Sábado", status: "Pendente" },
+            { id: "#RES-224", titular: "Gustavo Barbosa", assentos: "2 Assentos", data: "21 Sábado", status: "Confirmado" },
+            { id: "#RES-225", titular: "Helena Kim", assentos: "4 Assentos", data: "22 Domingo", status: "Confirmado" },
+            { id: "#RES-226", titular: "Igor Cardoso", assentos: "2 Assentos", data: "22 Domingo", status: "Cancelado" },
+            { id: "#RES-227", titular: "Jessica Tanaka", assentos: "6 Assentos", data: "22 Domingo", status: "Confirmado" },
+            { id: "#RES-228", titular: "Leonardo Paiva", assentos: "4 Assentos", data: "23 Segunda", status: "Confirmado" },
+            { id: "#RES-229", titular: "Monique Fujii", assentos: "2 Assentos", data: "23 Segunda", status: "Pendente" },
+            { id: "#RES-230", titular: "Nathan Farias", assentos: "3 Assentos", data: "24 Terça", status: "Confirmado" },
+            { id: "#RES-231", titular: "Otavio Morais", assentos: "4 Assentos", data: "24 Terça", status: "Confirmado" },
+            { id: "#RES-232", titular: "Paula Ogawa", assentos: "2 Assentos", data: "25 Quarta", status: "Confirmado" },
+            { id: "#RES-233", titular: "Quenia Reis", assentos: "6 Assentos", data: "25 Quarta", status: "Pendente" },
+            { id: "#RES-234", titular: "Rafael Endo", assentos: "4 Assentos", data: "26 Quinta", status: "Confirmado" },
+            { id: "#RES-235", titular: "Sabrina Sato", assentos: "2 Assentos", data: "26 Quinta", status: "Confirmado" },
+            { id: "#RES-236", titular: "Tatiane Nishimura", assentos: "8 Assentos", data: "27 Sexta", status: "Confirmado" },
+            { id: "#RES-237", titular: "Ubiratan Maia", assentos: "2 Assentos", data: "27 Sexta", status: "Cancelado" },
+            { id: "#RES-238", titular: "Vinicius Koga", assentos: "4 Assentos", data: "27 Sexta", status: "Confirmado" },
+            { id: "#RES-239", titular: "Wagner Lopes", assentos: "2 Assentos", data: "28 Sábado", status: "Pendente" },
+            { id: "#RES-240", titular: "Xavier Nogueira", assentos: "6 Assentos", data: "28 Sábado", status: "Confirmado" },
+            { id: "#RES-241", titular: "Yasmin Honda", assentos: "4 Assentos", data: "28 Sábado", status: "Confirmado" },
+            { id: "#RES-242", titular: "Zuleica Arantes", assentos: "2 Assentos", data: "28 Sábado", status: "Confirmado" },
+            { id: "#RES-243", titular: "Adriano Shimabukuro", assentos: "5 Assentos", data: "29 Domingo", status: "Pendente" },
+            { id: "#RES-244", titular: "Bianca Xavier", assentos: "2 Assentos", data: "29 Domingo", status: "Confirmado" },
+            { id: "#RES-245", titular: "Caio Uehara", assentos: "4 Assentos", data: "29 Domingo", status: "Cancelado" },
+            { id: "#RES-246", titular: "Daniela Hirata", assentos: "2 Assentos", data: "29 Domingo", status: "Confirmado" },
+            { id: "#RES-247", titular: "Erick Yamashita", assentos: "6 Assentos", data: "30 Segunda", status: "Pendente" },
+            { id: "#RES-248", titular: "Fabiana Oshiro", assentos: "4 Assentos", data: "30 Segunda", status: "Confirmado" },
+            { id: "#RES-249", titular: "Gerson Nagai", assentos: "2 Assentos", data: "30 Segunda", status: "Confirmado" },
+            { id: "#RES-250", titular: "Gisele Bündchen", assentos: "4 Assentos", data: "30 Segunda", status: "Cancelado" },
+            { id: "#RES-251", titular: "Hudson Miyake", assentos: "2 Assentos", data: "31 Terça", status: "Confirmado" },
+            { id: "#RES-252", titular: "Isabela Saito", assentos: "6 Assentos", data: "31 Terça", status: "Pendente" },
+            { id: "#RES-253", titular: "Jair Inacio", assentos: "4 Assentos", data: "31 Terça", status: "Confirmado" },
+            { id: "#RES-254", titular: "Katia Arakaki", assentos: "2 Assentos", data: "31 Terça", status: "Confirmado" }
+        ];
+
         const listaEstoque = [
             { id: "EST-01", nome: "Salmão Fresco Eviscerado", grupo: "Principal", qtd: 5, min: 20 },
             { id: "EST-02", nome: "Arroz Japonês Gohan", grupo: "Principal", qtd: 22, min: 20 },
@@ -522,13 +659,12 @@
 
         let faturamentoChart, canaisChart;
 
-        // Função de Atualização da Visão Geral (Disparada nos filtros de Período e Turno)
+        // Função de Atualização da Visão Geral (Sem alterações)
         function atualizarVisaoGeral() {
             const p = document.getElementById('filtroPeriodo').value;
             const t = document.getElementById('filtroTurno').value;
             const data = dadosVisaoGeral[p][t];
 
-            // Atualiza Cards
             document.getElementById('c1-val').innerText = data.fat;
             document.getElementById('c1-sub').innerText = data.meta;
             document.getElementById('c1-badge').innerHTML = `<i class="fa-solid fa-arrow-trend-up"></i> ${data.badge}`;
@@ -536,13 +672,11 @@
             document.getElementById('c4-sub').innerText = data.subPedidos;
             document.getElementById('pico-badge').innerHTML = `<i class="fa-regular fa-clock text-sky-400 mr-1"></i> ${data.pico}`;
 
-            // Atualiza Gráfico 1 (Faturamento)
             faturamentoChart.data.labels = data.labels;
             faturamentoChart.data.datasets[0].data = data.salao;
             faturamentoChart.data.datasets[1].data = data.delivery;
             faturamentoChart.update();
 
-            // Atualiza Gráfico 2 (Canais)
             canaisChart.data.datasets[0].data = data.canais;
             canaisChart.update();
         }
@@ -559,7 +693,7 @@
             activeBtn.className = "tab-btn active bg-sky-500 text-slate-950 font-bold px-4 py-2 rounded-xl transition-all duration-200 flex items-center gap-2 text-sm shadow-[0_0_15px_rgba(14,165,233,0.4)]";
         }
 
-        // Renderização Tabela Estoque
+        // Renderização e Filtros do Estoque
         function renderTabelaEstoque(itens) {
             const tbody = document.getElementById('corpo-tabela-estoque');
             tbody.innerHTML = '';
@@ -570,9 +704,9 @@
 
                 if (ratio <= 0.7) {
                     const qtdComprar = Math.ceil(item.min * 1.5 - item.qtd);
-                    statusHtml = `<span class="inline-flex items-center gap-1.5 font-medium text-rose-500"><span class="w-2.5 h-2.5 rounded-full bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.8)]"></span> Urgência: Comprar +${qtdComprar} un</span>`;
+                    statusHtml = `<span class="inline-flex items-center gap-1.5 font-medium text-rose-500"><span class="w-2.5 h-2.5 rounded-full bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.8)]"></span> Estoque Crítico: Comprar +${qtdComprar} un</span>`;
                 } else if (ratio < 1.3) {
-                    statusHtml = `<span class="inline-flex items-center gap-1.5 font-medium text-amber-400"><span class="w-2.5 h-2.5 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(245,158,11,0.8)]"></span> Alerta: Acompanhar giro</span>`;
+                    statusHtml = `<span class="inline-flex items-center gap-1.5 font-medium text-amber-400"><span class="w-2.5 h-2.5 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(245,158,11,0.8)]"></span> Produto em Alerta</span>`;
                 } else {
                     statusHtml = `<span class="inline-flex items-center gap-1.5 font-medium text-emerald-400"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.8)]"></span> Estoque OK</span>`;
                 }
@@ -591,15 +725,71 @@
             });
         }
 
-        // Filtros em tempo real
+        function filtrarEstoque() {
+            const termo = document.getElementById('buscaEstoque').value.toLowerCase();
+            const grupo = document.getElementById('filtroEstoqueGrupo').value;
+            const status = document.getElementById('filtroEstoqueStatus').value;
+
+            const filtrados = listaEstoque.filter(item => {
+                const ratio = item.qtd / item.min;
+                let itemStatus = 'ok';
+                if (ratio <= 0.7) itemStatus = 'critico';
+                else if (ratio < 1.3) itemStatus = 'alerta';
+
+                const bateNome = item.nome.toLowerCase().includes(termo);
+                const bateGrupo = (grupo === 'todos' || item.grupo === grupo);
+                const bateStatus = (status === 'todos' || itemStatus === status);
+
+                return bateNome && bateGrupo && bateStatus;
+            });
+
+            renderTabelaEstoque(filtrados);
+        }
+
+        // Renderização e Paginação Dinâmica da Tabela de Reservas
         function filtrarReservas() {
             const termo = document.getElementById('buscaReservaNome').value.toLowerCase();
             const status = document.getElementById('filtroReservaStatus').value;
-            document.querySelectorAll('#tabela-reservas tbody tr').forEach(row => {
-                const titular = row.querySelector('.coluna-titular').textContent.toLowerCase();
-                const stText = row.querySelector('.coluna-status').textContent;
-                row.style.display = (titular.includes(termo) && (status === 'todos' || stText.includes(status))) ? '' : 'none';
+
+            const reservadosFiltrados = listaReservas.filter(r => {
+                const bateNome = r.titular.toLowerCase().includes(termo);
+                const bateStatus = (status === 'todos' || r.status === status);
+                return bateNome && bateStatus;
             });
+
+            const total = reservadosFiltrados.length;
+            const itensPagina = reservadosFiltrados.slice(0, 20); // Limita em no máximo 20 por página
+            const exibidos = itensPagina.length;
+
+            const tbody = document.getElementById('corpo-tabela-reservas');
+            tbody.innerHTML = '';
+
+            itensPagina.forEach(res => {
+                let statusBadge = '';
+                if (res.status === 'Confirmado') {
+                    statusBadge = `<span class="inline-flex items-center gap-1.5 font-medium text-emerald-400"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.8)]"></span> Confirmado</span>`;
+                } else if (res.status === 'Pendente') {
+                    statusBadge = `<span class="inline-flex items-center gap-1.5 font-medium text-amber-400"><span class="w-2.5 h-2.5 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(245,158,11,0.8)]"></span> Pendente</span>`;
+                } else {
+                    statusBadge = `<span class="inline-flex items-center gap-1.5 font-medium text-rose-500"><span class="w-2.5 h-2.5 rounded-full bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.8)]"></span> Cancelado</span>`;
+                }
+
+                const tr = document.createElement('tr');
+                tr.className = "bg-slate-900/90 odd:bg-slate-900/90 even:bg-slate-800/50 hover:bg-slate-800 transition-colors";
+                tr.innerHTML = `
+                    <td class="py-3 px-4 border-r border-slate-700 text-slate-300 font-mono">${res.id}</td>
+                    <td class="py-3 px-4 border-r border-slate-700 font-medium text-white">${res.titular}</td>
+                    <td class="py-3 px-4 border-r border-slate-700 text-center text-white">${res.assentos}</td>
+                    <td class="py-3 px-4 border-r border-slate-700 text-white">${res.data}</td>
+                    <td class="py-3 px-4 text-center">${statusBadge}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            // Atualização da Paginação Fictícia
+            const totalPaginas = Math.ceil(total / 20) || 1;
+            document.getElementById('paginacao-texto').innerText = `Mostrando ${exibidos > 0 ? 1 : 0}-${exibidos} de ${total}`;
+            document.getElementById('paginacao-tag').innerText = `1 de ${totalPaginas}`;
         }
 
         function filtrarRecebimento() {
@@ -611,14 +801,7 @@
             });
         }
 
-        function filtrarEstoque() {
-            const termo = document.getElementById('buscaEstoque').value.toLowerCase();
-            const grupo = document.getElementById('filtroEstoqueGrupo').value;
-            const filtrados = listaEstoque.filter(item => item.nome.toLowerCase().includes(termo) && (grupo === 'todos' || item.grupo === grupo));
-            renderTabelaEstoque(filtrados);
-        }
-
-        // Inicialização de Gráficos e Componentes
+        // Inicialização dos Gráficos
         window.addEventListener('DOMContentLoaded', () => {
             const ctxFaturamento = document.getElementById('faturamentoChart').getContext('2d');
             faturamentoChart = new Chart(ctxFaturamento, {
@@ -655,6 +838,7 @@
 
             // Carrega visão inicial e tabelas
             atualizarVisaoGeral();
+            filtrarReservas();
             renderTabelaEstoque(listaEstoque);
         });
     </script>
