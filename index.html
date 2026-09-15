@@ -237,9 +237,9 @@
                     </div>
                 </div>
 
-                <div class="overflow-x-auto rounded-lg border border-slate-700">
+                <div class="overflow-x-auto max-h-[500px] overflow-y-auto rounded-lg border border-slate-700">
                     <table class="w-full text-left text-sm text-white border-collapse" id="tabela-reservas">
-                        <thead class="bg-slate-950 text-slate-200 text-xs uppercase border-b border-slate-700">
+                        <thead class="bg-slate-950 text-slate-200 text-xs uppercase border-b border-slate-700 sticky top-0 z-10">
                             <tr>
                                 <th class="py-3 px-4 font-semibold border-r border-slate-700">ID Reserva</th>
                                 <th class="py-3 px-4 font-semibold border-r border-slate-700">Titular da Reserva</th>
@@ -408,19 +408,19 @@
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div class="bg-slate-900 border border-sky-500/40 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/60 hover:shadow-[0_0_25px_rgba(16,185,129,0.5)]">
                     <span class="text-xs font-semibold uppercase tracking-wider text-slate-300 block mb-2">Estoque Nível Normal</span>
-                    <div class="text-2xl font-bold text-emerald-400 mb-1">18 Produtos OK</div>
+                    <div class="text-2xl font-bold text-emerald-400 mb-1">9 Produtos OK</div>
                     <p class="text-xs text-slate-300">Quantidade acima do limite ideal</p>
                 </div>
 
                 <div class="bg-slate-900 border border-amber-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_25px_rgba(245,158,11,0.5)]">
-                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-300 block mb-2">Alertas de Estoque</span>
-                    <div class="text-2xl font-bold text-amber-400 mb-1">7 Produtos em Alerta</div>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-300 block mb-2">Estoques em Alerta</span>
+                    <div class="text-2xl font-bold text-amber-400 mb-1">13 Estoques em Alerta</div>
                     <p class="text-xs text-slate-300">Entre 29% abaixo e 29% acima do mín.</p>
                 </div>
 
                 <div class="bg-slate-900 border border-sky-500/40 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 hover:border-rose-500/60 hover:shadow-[0_0_25px_rgba(244,63,94,0.5)]">
                     <span class="text-xs font-semibold uppercase tracking-wider text-slate-300 block mb-2">Estoque Crítico</span>
-                    <div class="text-2xl font-bold text-rose-500 mb-1">5 Estoques Críticos</div>
+                    <div class="text-2xl font-bold text-rose-500 mb-1">8 Estoques Críticos</div>
                     <p class="text-xs text-slate-300">Produtos 30% ou mais abaixo do mín.</p>
                 </div>
             </div>
@@ -448,9 +448,9 @@
                     </div>
                 </div>
 
-                <div class="overflow-x-auto rounded-lg border border-slate-700">
+                <div class="overflow-x-auto max-h-[500px] overflow-y-auto rounded-lg border border-slate-700">
                     <table class="w-full text-left text-sm text-white border-collapse" id="tabela-estoque">
-                        <thead class="bg-slate-950 text-slate-200 text-xs uppercase border-b border-slate-700">
+                        <thead class="bg-slate-950 text-slate-200 text-xs uppercase border-b border-slate-700 sticky top-0 z-10">
                             <tr>
                                 <th class="py-3 px-4 font-semibold border-r border-slate-700">ID</th>
                                 <th class="py-3 px-4 font-semibold border-r border-slate-700">Nome do Produto</th>
@@ -587,7 +587,6 @@
             { id: "#RES-218", titular: "Bruno Yamamoto", assentos: "4 Assentos", data: "20 Sexta", status: "Confirmado" },
             { id: "#RES-219", titular: "Larissa Castro", assentos: "2 Assentos", data: "20 Sexta", status: "Confirmado" },
             { id: "#RES-220", titular: "Diego Souza", assentos: "6 Assentos", data: "21 Sábado", status: "Confirmado" },
-            // Próximos itens para lista completa coerente
             { id: "#RES-221", titular: "Aline Takahashi", assentos: "4 Assentos", data: "21 Sábado", status: "Confirmado" },
             { id: "#RES-222", titular: "Fabio Henrique", assentos: "2 Assentos", data: "21 Sábado", status: "Confirmado" },
             { id: "#RES-223", titular: "Renata Matsui", assentos: "5 Assentos", data: "21 Sábado", status: "Pendente" },
@@ -659,7 +658,7 @@
 
         let faturamentoChart, canaisChart;
 
-        // Função de Atualização da Visão Geral (Sem alterações)
+        // Função de Atualização da Visão Geral
         function atualizarVisaoGeral() {
             const p = document.getElementById('filtroPeriodo').value;
             const t = document.getElementById('filtroTurno').value;
@@ -704,11 +703,11 @@
 
                 if (ratio <= 0.7) {
                     const qtdComprar = Math.ceil(item.min * 1.5 - item.qtd);
-                    statusHtml = `<span class="inline-flex items-center gap-1.5 font-medium text-rose-500"><span class="w-2.5 h-2.5 rounded-full bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.8)]"></span> Estoque Crítico: Comprar +${qtdComprar} un</span>`;
+                    statusHtml = `<span class="inline-flex items-center gap-1.5 font-medium text-white"><span class="w-2.5 h-2.5 rounded-full bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.8)]"></span> Estoque Crítico: Comprar +${qtdComprar} un</span>`;
                 } else if (ratio < 1.3) {
-                    statusHtml = `<span class="inline-flex items-center gap-1.5 font-medium text-amber-400"><span class="w-2.5 h-2.5 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(245,158,11,0.8)]"></span> Produto em Alerta</span>`;
+                    statusHtml = `<span class="inline-flex items-center gap-1.5 font-medium text-white"><span class="w-2.5 h-2.5 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(245,158,11,0.8)]"></span> Produto em Alerta</span>`;
                 } else {
-                    statusHtml = `<span class="inline-flex items-center gap-1.5 font-medium text-emerald-400"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.8)]"></span> Estoque OK</span>`;
+                    statusHtml = `<span class="inline-flex items-center gap-1.5 font-medium text-white"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.8)]"></span> Estoque OK</span>`;
                 }
 
                 const tr = document.createElement('tr');
